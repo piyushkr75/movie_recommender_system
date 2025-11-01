@@ -31,7 +31,16 @@ with col1:
     if selected_movie_name:
         selected_movie = movies[movies['title'] == selected_movie_name].iloc[0]
         st.markdown("### Selected Movie:")
-        st.info(f"**{selected_movie_name}** (ID: {selected_movie['movie_id']})")
+        movie_info = [
+            f"**Title:** {selected_movie_name}",
+            f"**ID:** {selected_movie['movie_id']}",
+            f"**Rating:** ⭐ {selected_movie['vote_average']:.1f}/10 ({selected_movie['vote_count']} votes)",
+            f"**Release Date:** {selected_movie['release_date']}",
+            "---",
+            "**Overview:**",
+            f"{selected_movie['overview']}"
+        ]
+        st.info('\n'.join(movie_info))
 
 with col2:
     st.subheader("🎯 Recommendations")
